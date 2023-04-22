@@ -7,9 +7,9 @@ import matplotlib.pyplot as plt
 import h5sparse
 from multiprocessing import Pool
 
-from diversity_measure import *
+from ..diversity_measure import *
 
-data: np.array = scipy.io.arff.loadarff("data/LSST/LSST_TRAIN.arff")
+data: np.array = scipy.io.arff.loadarff("../data/LSST/LSST_TRAIN.arff")
 data = data[0]
 
 def run_multiprocessing(func, iterable, n_processors):
@@ -31,7 +31,6 @@ for i in range(len(data)):
     for j in range(len(time_series_set)):
         graph: np.array = ts2vg.NaturalVG().build(time_series_set[j].tolist()).adjacency_matrix()
         visibility_graphs.append(graph)
-
 
     node_distributions = run_multiprocessing(calculate_node_distribution, visibility_graphs, n_processors=8)
     transition_matrices = run_multiprocessing(calculate_transition_matrix, visibility_graphs, n_processors=8)

@@ -1,5 +1,6 @@
 name: time-series-classification
 channels:
+  - numba
   - conda-forge
   - defaults
 dependencies:
@@ -15,9 +16,9 @@ dependencies:
   - brotli-bin=1.0.9=h166bdaf_8
   - brotlipy=0.7.0=py311hd4cff14_1005
   - bzip2=1.0.8=h7f98852_4
-  - ca-certificates=2022.12.7=ha878542_0
+  - ca-certificates=2023.01.10=h06a4308_0
   - cairo=1.16.0=h35add3b_1015
-  - certifi=2022.12.7=pyhd8ed1ab_0
+  - certifi=2022.12.7=py311h06a4308_0
   - cffi=1.15.1=py311h409f033_3
   - charset-normalizer=3.1.0=pyhd8ed1ab_0
   - comm=0.1.3=pyhd8ed1ab_0
@@ -27,6 +28,7 @@ dependencies:
   - dbus=1.13.6=h5008d03_3
   - debugpy=1.6.7=py311hcafe171_0
   - decorator=5.1.1=pyhd8ed1ab_0
+  - dill=0.3.6=pyhd8ed1ab_1
   - executing=1.2.0=pyhd8ed1ab_0
   - expat=2.5.0=hcb278e6_1
   - font-ttf-dejavu-sans-mono=2.37=hab24e00_0
@@ -106,11 +108,13 @@ dependencies:
   - libxkbcommon=1.5.0=h79f4944_1
   - libxml2=2.10.4=hfdac1af_0
   - libzlib=1.2.13=h166bdaf_4
+  - llvmlite=0.40.0rc1=py311he1b5a44_0
   - lz4-c=1.9.4=hcb278e6_0
   - matplotlib=3.7.1=py311h38be061_0
   - matplotlib-base=3.7.1=py311h8597a09_0
   - matplotlib-inline=0.1.6=pyhd8ed1ab_0
   - mpg123=1.31.3=hcb278e6_0
+  - multiprocess=0.70.14=py311hd4cff14_3
   - munkres=1.1.4=pyh9f0ad1d_0
   - mysql-common=8.0.32=ha901b37_1
   - mysql-libs=8.0.32=hd7da12d_1
@@ -118,6 +122,7 @@ dependencies:
   - nest-asyncio=1.5.6=pyhd8ed1ab_0
   - nspr=4.35=h27087fc_0
   - nss=3.89=he45b914_0
+  - numba=0.57.0rc1=np1.22py3.11hd267560_gfd03bc2cb_0
   - numpy=1.24.2=py311h8e6699e_0
   - openjpeg=2.5.0=hfec8fc6_2
   - openssl=3.1.0=h0b41bf4_0
@@ -206,4 +211,3 @@ dependencies:
       - threadpoolctl==3.1.0
       - ts2vg==1.2.2
       - wrapt==1.15.0
-prefix: /home/lfrf/anaconda3/envs/time-series-classification
