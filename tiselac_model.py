@@ -19,10 +19,10 @@ def save_pickle(data, path):
         pickle.dump(data, file)
 
 train_data: np.array = scipy.io.arff.loadarff("data/Tiselac/Tiselac_TRAIN.arff")
-train_data = train_data[0][:100]
+train_data = train_data[0]
 
 test_data: np.array = scipy.io.arff.loadarff("data/Tiselac/Tiselac_TEST.arff")
-test_data = test_data[0][:100]
+test_data = test_data[0]
 
 X_train = np.array([np.array(e[0]) for e in train_data])
 X_train = np.array(X_train.tolist(), dtype=np.float_)
@@ -40,7 +40,7 @@ y_test = np.array(y_test.tolist(), dtype=np.float_)
 ROCKET_KERNELS: np.int_ = 10_000
 RANDOM_STATE: np.int_ = 0
 
-trf = Rocket(num_kernels=ROCKET_KERNELS, random_state=RANDOM_STATE)
+trf = Rocket(num_kernels=ROCKET_KERNELS, random_state=RANDOM_STATE, n_jobs=-1)
 trf.fit(X_train)
 trf.save("rocket_transform")
          
