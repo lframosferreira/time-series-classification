@@ -40,10 +40,10 @@ y_test = np.array(y_test.tolist(), dtype=np.float_)
 ROCKET_KERNELS: np.int_ = 10_000
 RANDOM_STATE: np.int_ = 0
 
-trf = Rocket(num_kernels=ROCKET_KERNELS, random_state=RANDOM_STATE, n_jobs=6)
+trf = Rocket(num_kernels=ROCKET_KERNELS, random_state=RANDOM_STATE, n_jobs=-1)
 trf.fit(X_train)
 trf.save("rocket_transform")
-         
+ 
 X_train = trf.transform(X_train) 
 X_test = trf.transform(X_test) 
 
