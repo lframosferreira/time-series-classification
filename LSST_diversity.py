@@ -7,9 +7,9 @@ import matplotlib.pyplot as plt
 import h5sparse
 from multiprocessing import Pool
 
-from ..diversity_measure import *
+from diversity_measure import *
 
-data: np.array = scipy.io.arff.loadarff("../data/LSST/LSST_TRAIN.arff")
+data: np.array = scipy.io.arff.loadarff("data/LSST/LSST_TRAIN.arff")
 data = data[0]
 
 def run_multiprocessing(func, iterable, n_processors):
