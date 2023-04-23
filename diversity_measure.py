@@ -16,11 +16,11 @@ from scipy.sparse.csgraph import shortest_path
 @returns: the node distribution of the graph
 """
 def node_distribution(graph: NDArrayInt) -> npt.NDArray:
-    dist: NDArrayInt = shortest_path(graph, directed = False, unweighted = True).astype(np.int_)
+    dist: NDArrayInt = shortest_path(graph, directed=False, unweighted=True).astype(np.int_)
     dist[dist < 0] = dist.shape[0]
     N = dist.max() + 1
     dist_offsets = dist + np.arange(dist.shape[0])[:, None] * N
-    return np.delete(np.bincount(dist_offsets.ravel(), minlength=dist.shape[0]*N).reshape(-1,N)/(dist.shape[0]-1), 0, axis = 1)
+    return np.delete(np.bincount(dist_offsets.ravel(), minlength=dist.shape[0] * N).reshape(-1, N) / (dist.shape[0] - 1), 0, axis=1)
 
 """Calculates a graph transition matrix
 
