@@ -10,6 +10,7 @@ from sklearn.metrics import classification_report, confusion_matrix, f1_score
 from sktime.transformations.panel.rocket import Rocket
 from xgboost import XGBClassifier
 from sklearn.preprocessing import LabelEncoder
+le = LabelEncoder()
 
 MODEL_NAME: str = "Rocket_XGBoost"
 
@@ -18,22 +19,22 @@ def save_pickle(data, path):
         pickle.dump(data, file)
 
 train_data: np.array = scipy.io.arff.loadarff("data/Tiselac/Tiselac_TRAIN.arff")
-train_data = train_data[0]
+train_data = train_data[0][:10]
 
 test_data: np.array = scipy.io.arff.loadarff("data/Tiselac/Tiselac_TEST.arff")
-test_data = test_data[0]
+test_data = test_data[0][:10]
 
 X_train = np.array([np.array(e[0]) for e in train_data])
 X_train = np.array(X_train.tolist(), dtype=np.float_)
 
 y_train = np.array([int(e[1]) for e in train_data])
-y_train = np.array(y_train.tolist(), dtype=np.float_)
+y_train = le.fit_transform(y_train)
 
 X_test = np.array([np.array(e[0]) for e in test_data])
 X_test = np.array(X_test.tolist(), dtype=np.float_)
 
 y_test = np.array([int(e[1]) for e in test_data])
-y_test = np.array(y_test.tolist(), dtype=np.float_)
+y_test = le.fit_transform(y_test)
 
 ROCKET_KERNELS: np.int_ = 10_000
 RANDOM_STATE: np.int_ = 0
