@@ -27,11 +27,17 @@ test_data = test_data[0]
 X_train = np.array([np.array(e[0]) for e in train_data])
 X_train = np.array(X_train.tolist(), dtype=np.float_)
 
+# Removendo dimensões (deixando 7 e 8)
+X_train = np.dete(X_train, [0, 1, 2, 3, 4, 5, 6, 9] , axis=1)
+
 y_train = np.array([int(e[1]) for e in train_data])
 y_train = le.fit_transform(y_train)
 
 X_test = np.array([np.array(e[0]) for e in test_data])
 X_test = np.array(X_test.tolist(), dtype=np.float_)
+
+# Removendo dimensões (deixando 7 e 8)
+X_test = np.dete(X_test, [0, 1, 2, 3, 4, 5, 6, 9] , axis=1)
 
 y_test = np.array([int(e[1]) for e in test_data])
 y_test = le.fit_transform(y_test)
