@@ -9,7 +9,7 @@ from multiprocessing import Pool
 
 from diversity_measure import *
 
-data: np.array = scipy.io.arff.loadarff("data/Tiselac/Tiselac_TRAIN.arff")
+data: np.array = scipy.io.arff.loadarff("../../data/LSST/LSST_TRAIN.arff")
 data = data[0]
 
 def run_multiprocessing(func, iterable, n_processors):
@@ -22,7 +22,6 @@ def calculate_node_distribution(graph: np.array) -> np.array:
 def calculate_transition_matrix(graph: np.array) -> np.array:    
     return transition_matrix(graph)
 
-print("Iniciando calculos de diversidade")
 for i in range(len(data)):
     node_distributions: list = []
     transition_matrices: list = []
@@ -39,7 +38,7 @@ for i in range(len(data)):
     sparse_visibility_graphs = np.array([scipy.sparse.csr_matrix(graph, dtype=np.int8) for graph in visibility_graphs])
     less_contribute_rank: np.array = less_contribute(node_distributions, transition_matrices)
     k = 0
-    with h5sparse.File("tiselac.hdf5", "a") as f:
+    with h5sparse.File("LSST.hdf5", "a") as f:
         for graph in sparse_visibility_graphs:
             f.create_dataset(f"visibility_graphs/{i}/{k}", data=graph)
             k += 1

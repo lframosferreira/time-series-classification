@@ -18,10 +18,10 @@ def save_pickle(data, path):
     with open(path, "wb") as file:
         pickle.dump(data, file)
 
-train_data: np.array = scipy.io.arff.loadarff("data/LSST/LSST_TRAIN.arff")
+train_data: np.array = scipy.io.arff.loadarff("../../data/LSST/LSST_TRAIN.arff")
 train_data = train_data[0]
 
-test_data: np.array = scipy.io.arff.loadarff("data/LSST/LSST_TEST.arff")
+test_data: np.array = scipy.io.arff.loadarff("../../data/LSST/LSST_TEST.arff")
 test_data = test_data[0]
 
 X_train = np.array([np.array(e[0]) for e in train_data])
