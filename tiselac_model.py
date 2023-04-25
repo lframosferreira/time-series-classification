@@ -12,6 +12,8 @@ from xgboost import XGBClassifier
 from sklearn.preprocessing import LabelEncoder
 le = LabelEncoder()
 
+PREFIX: str = "rocket/tiselac/7_8_9"
+
 MODEL_NAME: str = "Rocket_XGBoost"
 
 def save_pickle(data, path):
@@ -28,7 +30,7 @@ X_train = np.array([np.array(e[0]) for e in train_data])
 X_train = np.array(X_train.tolist(), dtype=np.float_)
 
 # Removendo dimensões (deixando 7 e 8)
-X_train = np.delete(X_train, [0, 1, 2, 3, 4, 5, 6, 9] , axis=1)
+X_train = np.delete(X_train, [0, 1, 2, 3, 4, 5, 6] , axis=1)
 
 y_train = np.array([int(e[1]) for e in train_data])
 y_train = le.fit_transform(y_train)
@@ -37,7 +39,7 @@ X_test = np.array([np.array(e[0]) for e in test_data])
 X_test = np.array(X_test.tolist(), dtype=np.float_)
 
 # Removendo dimensões (deixando 7 e 8)
-X_test = np.delete(X_test, [0, 1, 2, 3, 4, 5, 6, 9] , axis=1)
+X_test = np.delete(X_test, [0, 1, 2, 3, 4, 5, 6] , axis=1)
 
 y_test = np.array([int(e[1]) for e in test_data])
 y_test = le.fit_transform(y_test)
@@ -69,9 +71,9 @@ now = datetime.now()
 ts = now.strftime("%m-%d-%Y_%H:%M:%S")
 conf_matrix = confusion_matrix(y_true=y_test, y_pred=y_pred)
 
-save_pickle(conf_matrix, "confusion_matrix.pickle")
+save_pickle(conf_matrix, F"{PREFIX}/confusion_matrix.pickle")
 
-classifier.save_model(f"./{MODEL_NAME}_{ts}.pickle")
+classifier.save_model(f"{PREFIX}/{MODEL_NAME}_{ts}.pickle")
 
 run_info = {
     'model_name': MODEL_NAME, 
@@ -84,5 +86,5 @@ run_info = {
     'timestamp': str(now)
 }
 
-with open(f"./run_info_{ts}.json", "w") as file:
+with open(f"{PREFIX}/run_info_{ts}.json", "w") as file:
     json.dump(run_info, file, indent = 4)
