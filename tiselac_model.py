@@ -5,8 +5,7 @@ import pandas as pd
 import pickle
 import time
 import scipy
-from sklearn.metrics import f1_score
-from sklearn.metrics import classification_report, confusion_matrix, f1_score
+from sklearn.metrics import classification_report, confusion_matrix, f1_score, recall_score, precision_score
 from sktime.transformations.panel.rocket import Rocket
 from xgboost import XGBClassifier
 from sklearn.preprocessing import LabelEncoder
@@ -65,6 +64,8 @@ y_pred = classifier.predict(X_test)
 # Evaluate the performance
 accuracy = classifier.score(X_test, y_test)
 
+recall = recall_score(y_test, y_pred, average=None)
+precision = precision_score(y_test, y_pred, average=None)
 f1 = f1_score(y_test, y_pred, average=None)
 
 now = datetime.now()
@@ -81,6 +82,8 @@ run_info = {
     'train_size': len(train_data),
     'test_size': len(test_data),
     'accuracy': accuracy,
+    'recall': recall.tolist(),
+    'precision': precision.tolist(),
     'f1_score': f1.tolist(),
     'random_state_seed': RANDOM_STATE,
     'timestamp': str(now)
