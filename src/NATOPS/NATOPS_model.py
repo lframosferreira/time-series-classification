@@ -85,8 +85,8 @@ def pipeline(prefix: str, model_name: str, train_data_path: str, test_data_path:
     run_info = {
         'model_name': MODEL_NAME, 
         'model_params': {},
-        'train_size': len(train_data),
-        'test_size': len(test_data),
+        'train_size': len(X_train),
+        'test_size': len(X_test),
         'accuracy': accuracy,
         'recall': recall.tolist(),
         'precision': precision.tolist(),
