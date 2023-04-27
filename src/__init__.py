@@ -1,1 +1,1 @@
-from .model_pipeline import pipeline
+from .pipeline import pipeline

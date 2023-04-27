@@ -33,8 +33,8 @@ for i in range(len(data)):
         graph: np.array = ts2vg.NaturalVG().build(time_series_set[j].tolist()).adjacency_matrix()
         visibility_graphs.append(graph)
 
-    node_distributions = run_multiprocessing(calculate_node_distribution, visibility_graphs, n_processors=8)
-    transition_matrices = run_multiprocessing(calculate_transition_matrix, visibility_graphs, n_processors=8)
+    node_distributions = run_multiprocessing(calculate_node_distribution, visibility_graphs, n_processors=-1)
+    transition_matrices = run_multiprocessing(calculate_transition_matrix, visibility_graphs, n_processors=-1)
 
     sparse_visibility_graphs = np.array([scipy.sparse.csr_matrix(graph, dtype=np.int8) for graph in visibility_graphs])
     less_contribute_rank: np.array = less_contribute(node_distributions, transition_matrices)
