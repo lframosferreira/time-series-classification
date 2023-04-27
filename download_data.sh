@@ -44,3 +44,11 @@ if [ ! -d "data/NATOPS" ]; then
     unzip data/NATOPS/NATOPS.zip -d data/NATOPS/
     rm data/NATOPS/*.zip data/NATOPS/*.jpg
 fi
+
+# download AWR
+if [ ! -d "data/ArticularyWordRecognition" ]; then
+    mkdir data/ArticularyWordRecognition/
+    wget -P data/NATOPS http://timeseriesclassification.com/Downloads/ArticularyWordRecognition.zip
+    unzip data/ArticularyWordRecognition/ArticularyWordRecognition.zip -d data/ArticularyWordRecognition/
+    rm data/ArticularyWordRecognition/*.zip data/ArticularyWordRecognition/*.jpg
+fi
