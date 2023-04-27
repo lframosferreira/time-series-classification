@@ -11,7 +11,7 @@ from xgboost import XGBClassifier
 from sklearn.preprocessing import LabelEncoder
 le = LabelEncoder()
 
-PREFIX: str = "rocket/tiselac/7_8_9"
+PREFIX: str = "results/rocket/tiselac/7_8_9"
 
 MODEL_NAME: str = "Rocket_XGBoost"
 
@@ -72,7 +72,7 @@ now = datetime.now()
 ts = now.strftime("%m-%d-%Y_%H:%M:%S")
 conf_matrix = confusion_matrix(y_true=y_test, y_pred=y_pred)
 
-save_pickle(conf_matrix, F"{PREFIX}/confusion_matrix.pickle")
+save_pickle(conf_matrix, f"{PREFIX}/confusion_matrix.pickle")
 
 classifier.save_model(f"{PREFIX}/{MODEL_NAME}_{ts}.pickle")
 
