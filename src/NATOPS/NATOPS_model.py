@@ -30,6 +30,8 @@ def pipeline(prefix: str, model_name: str, train_data_path: str, test_data_path:
     X_train = np.array([np.array(e[0]) for e in train_data])
     X_train = np.array(X_train.tolist(), dtype=np.float_)
 
+    ORIGINAL_NUMBER_OF_DIMENSIONS: int = X_train.shape[1]
+
     if dimensions_to_use is not None:
         X_train = np.delete(X_train, np.setdiff1d(np.arange(X_train.shape[1]), dimensions_to_use), axis=1)
 
@@ -93,7 +95,7 @@ def pipeline(prefix: str, model_name: str, train_data_path: str, test_data_path:
         'f1_score': f1.tolist(),
         'random_state_seed': RANDOM_STATE,
         'timestamp': str(now),
-        'dimensios_used': dimensions_to_use.tolist() if dimensions_to_use is not None else list(range(X_train.shape[1]))
+        'dimensios_used': dimensions_to_use.tolist() if dimensions_to_use is not None else list(range(ORIGINAL_NUMBER_OF_DIMENSIONS))
     }
 
     with open(f"{PREFIX}/run_info_{ts}.json", "w") as file:
