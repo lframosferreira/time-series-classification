@@ -36,3 +36,11 @@ if [ ! -d "data/FaceDetection" ]; then
     unzip data/FaceDetection/FaceDetection.zip -d data/FaceDetection/
     rm data/FaceDetection/*.zip data/FaceDetection/*.jpg
 fi
+
+# download NATOPS
+if [ ! -d "data/NATOPS" ]; then
+    mkdir data/NATOPS/
+    wget -P data/NATOPS http://timeseriesclassification.com/Downloads/NATOPS.zip
+    unzip data/NATOPS/NATOPS.zip -d data/NATOPS/
+    rm data/NATOPS/*.zip data/NATOPS/*.jpg
+fi
