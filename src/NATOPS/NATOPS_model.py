@@ -93,7 +93,7 @@ def pipeline(prefix: str, model_name: str, train_data_path: str, test_data_path:
         'f1_score': f1.tolist(),
         'random_state_seed': RANDOM_STATE,
         'timestamp': str(now),
-        'dimensios_used': dimensions_to_use.tolist()
+        'dimensios_used': dimensions_to_use.tolist() if dimensions_to_use is not None else range(X_train.shape[1])
     }
 
     with open(f"{PREFIX}/run_info_{ts}.json", "w") as file:
