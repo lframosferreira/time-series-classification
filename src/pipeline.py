@@ -5,7 +5,7 @@ import pandas as pd
 import pickle
 import time
 import scipy
-from sklearn.metrics import confusion_matrix, f1_score, recall_score, precision_score
+from sklearn.metrics import confusion_matrix, f1_score, recall_score, precision_score, classification_report
 from sktime.transformations.panel.rocket import Rocket
 from xgboost import XGBClassifier
 from sklearn.preprocessing import LabelEncoder
@@ -84,15 +84,14 @@ def model_pipeline(prefix: str, model_name: str, train_data_path: str, test_data
 
     classifier.save_model(f"{PREFIX}/{MODEL_NAME}_{ts}.pickle")
 
+    cr = classification_report(y_test, y_pred, output_dict=True)
+
     run_info = {
         'model_name': MODEL_NAME, 
         'model_params': {},
         'train_size': len(X_train),
         'test_size': len(X_test),
-        'accuracy': accuracy,
-        'recall': recall.tolist(),
-        'precision': precision.tolist(),
-        'f1_score': f1.tolist(),
+        'classification_report': cr,
         'random_state_seed': RANDOM_STATE,
         'timestamp': str(now),
         'dimensios_used': dimensions_to_use.tolist() if dimensions_to_use is not None else list(range(ORIGINAL_NUMBER_OF_DIMENSIONS))
