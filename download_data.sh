@@ -52,3 +52,11 @@ if [ ! -d "data/ArticularyWordRecognition" ]; then
     unzip data/ArticularyWordRecognition/ArticularyWordRecognition.zip -d data/ArticularyWordRecognition/
     rm data/ArticularyWordRecognition/*.zip data/ArticularyWordRecognition/*.jpg
 fi
+
+# download FaceDetection
+if [ ! -d "data/FaceDetection" ]; then
+    mkdir data/FaceDetection/
+    wget -P data/NATOPS http://timeseriesclassification.com/Downloads/FaceDetection.zip
+    unzip data/FaceDetection/FaceDetection.zip -d data/FaceDetection/
+    rm data/FaceDetection/*.zip data/FaceDetection/*.jpg
+fi
