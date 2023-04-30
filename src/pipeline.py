@@ -135,7 +135,6 @@ def diversity_pipeline(dataset_name: str, dataset_path: str) -> None:
         node_distributions = run_multiprocessing(calculate_node_distribution, visibility_graphs, n_processors=2)
         transition_matrices = run_multiprocessing(calculate_transition_matrix, visibility_graphs, n_processors=2)
 
-
         sparse_visibility_graphs = np.array([scipy.sparse.csr_matrix(graph, dtype=np.int8) for graph in visibility_graphs])
         less_contribute_rank: np.array = less_contribute(node_distributions, transition_matrices)
         k = 0
