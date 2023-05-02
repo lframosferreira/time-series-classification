@@ -6,6 +6,7 @@ import pickle
 import time
 import scipy
 from sklearn.metrics import confusion_matrix, f1_score, recall_score, precision_score, classification_report
+from sklearn.model_selection import train_test_split
 from sktime.transformations.panel.rocket import Rocket
 from xgboost import XGBClassifier
 from sklearn.preprocessing import LabelEncoder
@@ -17,6 +18,9 @@ def model_pipeline(prefix: str, model_name: str, train_data_path: str, test_data
 
     MODEL_NAME: str = model_name
 
+    RANDOM_STATE: np.int_ = 0
+    TEST_SIZE: np.float_ = 0.3
+
     def save_pickle(data, path):
         with open(path, "wb") as file:
             pickle.dump(data, file)
@@ -27,24 +31,27 @@ def model_pipeline(prefix: str, model_name: str, train_data_path: str, test_data
     test_data: np.array = scipy.io.arff.loadarff(f"{test_data_path}")
     test_data = test_data[0]
 
-    X_train = np.array([np.array(e[0]) for e in train_data])
-    X_train = np.array(X_train.tolist(), dtype=np.float_)
+    all_data: np.array = np.concatenate([train_data, test_data])
 
-    ORIGINAL_NUMBER_OF_DIMENSIONS: int = X_train.shape[1]
+    input_data: np.array = np.array([np.array(e[0]) for e in all_data])
+    labels: np.array = np.array([np.array(e[1]) for e in all_data])
+
+    ORIGINAL_NUMBER_OF_DIMENSIONS: np.int_ = all_data[0][0].shape
+
+    X_train, X_test, y_train, y_test = train_test_split(input_data, labels, test_size=TEST_SIZE, random_state=RANDOM_STATE)
+
+    X_train = np.array(X_train.tolist(), dtype=np.float_)
 
     if dimensions_to_use is not None:
         X_train = np.delete(X_train, np.setdiff1d(np.arange(X_train.shape[1]), dimensions_to_use), axis=1)
 
-    y_train = np.array([int(float(e[1])) for e in train_data])
     y_train = le.fit_transform(y_train)
 
-    X_test = np.array([np.array(e[0]) for e in test_data])
     X_test = np.array(X_test.tolist(), dtype=np.float_)
 
     if dimensions_to_use is not None:
         X_test = np.delete(X_test, np.setdiff1d(np.arange(X_test.shape[1]), dimensions_to_use), axis=1)
 
-    y_test = np.array([int(float(e[1])) for e in test_data])
     y_test = le.fit_transform(y_test)
 
     # cleaning up RAM
@@ -52,7 +59,6 @@ def model_pipeline(prefix: str, model_name: str, train_data_path: str, test_data
     del test_data
 
     ROCKET_KERNELS: np.int_ = 10_000
-    RANDOM_STATE: np.int_ = 0
 
     trf = Rocket(num_kernels=ROCKET_KERNELS, random_state=RANDOM_STATE, n_jobs=-1)
     trf.fit(X_train)
