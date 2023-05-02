@@ -36,7 +36,7 @@ def model_pipeline(prefix: str, model_name: str, train_data_path: str, test_data
     input_data: np.array = np.array([np.array(e[0]) for e in all_data])
     labels: np.array = np.array([np.array(e[1]) for e in all_data])
 
-    ORIGINAL_NUMBER_OF_DIMENSIONS: np.int_ = all_data[0][0].shape
+    ORIGINAL_NUMBER_OF_DIMENSIONS: np.int_ = all_data[0][0].shape[0]
 
     X_train, X_test, y_train, y_test = train_test_split(input_data, labels, test_size=TEST_SIZE, random_state=RANDOM_STATE)
 
