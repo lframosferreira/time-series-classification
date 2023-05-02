@@ -56,7 +56,15 @@ fi
 # download FaceDetection
 if [ ! -d "data/FaceDetection" ]; then
     mkdir data/FaceDetection/
-    wget -P data/NATOPS http://timeseriesclassification.com/Downloads/FaceDetection.zip
+    wget -P data/FaceDetection http://timeseriesclassification.com/Downloads/FaceDetection.zip
     unzip data/FaceDetection/FaceDetection.zip -d data/FaceDetection/
     rm data/FaceDetection/*.zip data/FaceDetection/*.jpg
+fi
+
+# download PhonemeSpectra
+if [ ! -d "data/PhonemeSpectra" ]; then
+    mkdir data/PhonemeSpectra/
+    wget -P data/PhonemeSpectra http://timeseriesclassification.com/Downloads/PhonemeSpectra.zip
+    unzip data/PhonemeSpectra/PhonemeSpectra.zip -d data/PhonemeSpectra/
+    rm data/PhonemeSpectra/*.zip data/PhonemeSpectra/*.jpg
 fi
