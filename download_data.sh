@@ -48,7 +48,7 @@ fi
 # download AWR
 if [ ! -d "data/ArticularyWordRecognition" ]; then
     mkdir data/ArticularyWordRecognition/
-    wget -P data/NATOPS http://timeseriesclassification.com/Downloads/ArticularyWordRecognition.zip
+    wget -P data/ArticularyWordRecognition http://timeseriesclassification.com/Downloads/ArticularyWordRecognition.zip
     unzip data/ArticularyWordRecognition/ArticularyWordRecognition.zip -d data/ArticularyWordRecognition/
     rm data/ArticularyWordRecognition/*.zip data/ArticularyWordRecognition/*.jpg
 fi
