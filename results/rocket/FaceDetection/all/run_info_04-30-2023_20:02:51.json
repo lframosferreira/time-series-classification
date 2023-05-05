@@ -1,5 +1,6 @@
 {
     "model_name": "Rocket_XGBoost",
+    "dataset_name": "FaceDetection",
     "model_params": {},
     "train_size": 5890,
     "test_size": 3524,

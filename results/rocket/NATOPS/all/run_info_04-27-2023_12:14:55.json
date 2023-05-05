@@ -1,5 +1,6 @@
 {
     "model_name": "Rocket_XGBoost",
+    "dataset_name": "NATOPS",
     "model_params": {},
     "train_size": 180,
     "test_size": 180,

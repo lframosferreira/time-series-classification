@@ -1,5 +1,6 @@
 {
     "model_name": "Rocket_XGBoost",
+    "dataset_name": "PhonemeSpectra",
     "model_params": {},
     "train_size": 4667,
     "test_size": 2001,

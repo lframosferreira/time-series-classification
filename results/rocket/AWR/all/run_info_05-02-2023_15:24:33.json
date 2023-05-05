@@ -1,5 +1,6 @@
 {
     "model_name": "Rocket_XGBoost",
+    "dataset_name": "ArabicWordRecognition",
     "model_params": {},
     "train_size": 275,
     "test_size": 300,

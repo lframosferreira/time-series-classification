@@ -1,5 +1,6 @@
 {
     "model_name": "Rocket_XGBoost",
+    "dataset_name": "TiSeLac",
     "model_params": {},
     "train_size": 81714,
     "test_size": 17973,
@@ -38,5 +39,6 @@
         0.7430478309232481
     ],
     "random_state_seed": 0,
+    "dimensions_used": [7, 8, 9],
     "timestamp": "2023-04-26 21:24:26.439116"
 }
