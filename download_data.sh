@@ -68,3 +68,11 @@ if [ ! -d "data/PhonemeSpectra" ]; then
     unzip data/PhonemeSpectra/PhonemeSpectra.zip -d data/PhonemeSpectra/
     rm data/PhonemeSpectra/*.zip data/PhonemeSpectra/*.jpg
 fi
+
+# download InsectWingbeat
+if [ ! -d "data/InsectWingbeat" ]; then
+    mkdir data/InsectWingbeat/
+    wget -P data/InsectWingbeat http://timeseriesclassification.com/Downloads/InsectWingbeat.zip
+    unzip data/InsectWingbeat/InsectWingbeat.zip -d data/InsectWingbeat/
+    rm data/InsectWingbeat/*.zip data/InsectWingbeat/*.jpg data/InsectWingbeat/*.txt
+fi
