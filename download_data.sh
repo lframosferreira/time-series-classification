@@ -76,3 +76,11 @@ if [ ! -d "data/InsectWingbeat" ]; then
     unzip data/InsectWingbeat/InsectWingbeat.zip -d data/InsectWingbeat/
     rm data/InsectWingbeat/*.zip data/InsectWingbeat/*.jpg data/InsectWingbeat/*.txt
 fi
+
+# download FingerMovements
+if [ ! -d "data/FingerMovements" ]; then
+    mkdir data/FingerMovements/
+    wget -P data/FingerMovements http://timeseriesclassification.com/Downloads/FingerMovements.zip
+    unzip data/FingerMovements/FingerMovements.zip -d data/FingerMovements/
+    rm data/FingerMovements/*.zip data/FingerMovements/*.jpg data/FingerMovements/*.txt
+fi
