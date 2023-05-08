@@ -12,6 +12,6 @@ args = parser.parse_args()
 dataset_name: str = args.dataset_name
 train_path: str = args.train_path
 test_path: str = args.test_path
-dimension_to_use: list = args.dimensions_to_use
+dimension_to_use: list[int] = args.dimensions_to_use
 
-print(args)
+classifier_pipeline(dataset_name=dataset_name, train_path=train_path, test_path=test_path, dimensions_to_use=dimension_to_use)

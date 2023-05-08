@@ -11,7 +11,7 @@ from xgboost import XGBClassifier
 from sklearn.preprocessing import LabelEncoder
 le = LabelEncoder()
 
-def classifier_pipeline(dataset_name: str, train_data_path: str, test_data_path: str, dimensions_to_use: np.array = None) -> None:
+def classifier_pipeline(dataset_name: str, train_path: str, test_path: str, dimensions_to_use: np.array = None) -> None:
 
     MODEL_NAME: str = "Rocket_XGBoost"
 
@@ -22,10 +22,10 @@ def classifier_pipeline(dataset_name: str, train_data_path: str, test_data_path:
         with open(path, "wb") as file:
             pickle.dump(data, file)
 
-    train_data: np.array = scipy.io.arff.loadarff(f"{train_data_path}")
+    train_data: np.array = scipy.io.arff.loadarff(f"{train_path}")
     train_data = train_data[0]
 
-    test_data: np.array = scipy.io.arff.loadarff(f"{test_data_path}")
+    test_data: np.array = scipy.io.arff.loadarff(f"{test_path}")
     test_data = test_data[0]
 
     all_data: np.array = np.concatenate([train_data, test_data])
