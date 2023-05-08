@@ -91,7 +91,7 @@ def classifier_pipeline(dataset_name: str, train_path: str, test_path: str, dime
         "test_size": len(X_test),
         "random_state_seed": RANDOM_STATE,
         "timestamp": str(now),
-        "dimensios_used": dimensions_to_use if dimensions_to_use is not None else list(range(ORIGINAL_NUMBER_OF_DIMENSIONS)),
+        "dimensions_used": dimensions_to_use if dimensions_to_use is not None else list(range(ORIGINAL_NUMBER_OF_DIMENSIONS)),
         "accuracy": accuracy,
         "f1_avg": np.average(f1_score),
         "recall_avg": np.average(recall_score),
