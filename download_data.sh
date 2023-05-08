@@ -84,3 +84,11 @@ if [ ! -d "data/FingerMovements" ]; then
     unzip data/FingerMovements/FingerMovements.zip -d data/FingerMovements/
     rm data/FingerMovements/*.zip data/FingerMovements/*.jpg data/FingerMovements/*.txt
 fi
+
+# download JapaneseVowels
+if [ ! -d "data/JapaneseVowels" ]; then
+    mkdir data/JapaneseVowels/
+    wget -P data/JapaneseVowels http://timeseriesclassification.com/Downloads/JapaneseVowels.zip
+    unzip data/JapaneseVowels/JapaneseVowels.zip -d data/JapaneseVowels/
+    rm data/JapaneseVowels/*.zip data/JapaneseVowels/*.jpg data/JapaneseVowels/*.txt
+fi
